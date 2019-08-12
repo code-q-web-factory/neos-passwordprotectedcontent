@@ -1,0 +1,37 @@
+{
+    "name": "codeq/passwordprotectedcontent",
+    "type": "neos-package",
+    "description": "Password protect any document and content NodeType",
+    "license": "MIT",
+    "keywords": ["flow", "neos", "fusion", "password"],
+    "require": {
+        "neos/neos": "~3.2 || ~4.0 || dev-master",
+        "carbon/notification": "^1.0 || dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "CodeQ\\PasswordProtectedContent\\": "Classes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Roland Schütz",
+            "email": "rs@codeq.at",
+            "homepage": "https://codeq.at",
+            "role": "Developer"
+        }
+    ],
+    "archive": {
+        "exclude": [
+            ".editorconfig",
+            ".gitattributes",
+            ".github",
+            ".gitignore"
+        ]
+    },
+    "extra": {
+        "neos": {
+            "package-key": "CodeQ.PasswordProtectedContent"
+        }
+    }
+}
