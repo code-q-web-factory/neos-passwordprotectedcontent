@@ -44,7 +44,8 @@ We use semantic-versioning so every breaking change will increase the major-vers
 			2 = ‘documentNode’
 			3 = ‘site’
 		}
-		entryDiscriminator = ${request.arguments.passwordProtectedContentPassword}
+		// cache the initial request ot see the form and don't cache the password-check result
+		entryDiscriminator = ${request.httpRequest.methodSafe ? 'static' : false}
 	}
 	```
 
