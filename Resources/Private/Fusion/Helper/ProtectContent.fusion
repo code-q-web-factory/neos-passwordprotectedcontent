@@ -1,0 +1,43 @@
+prototype(CodeQ.PasswordProtectedContent:Helper.ProtectContent) < prototype(Neos.Fusion:Component) {
+	##################################
+    # These settings are public API: #
+    ##################################
+	configuredPassword = ${q(node).property('passwordProtectedContentPassword')}
+	renderContentInBackend = true
+	passwordForm = CodeQ.PasswordProtectedContent:Component.PasswordForm
+
+
+	# rendering
+	@context {
+		configuredPassword = ${this.configuredPassword}
+		renderContentInBackend = ${this.renderContentInBackend}
+		enteredPassword = ${request.arguments.passwordProtectedContentPassword || ''}
+		content = ${value}
+	}
+
+	renderer = Neos.Fusion:Case {
+		noPasswordConfigured {
+			condition = ${String.length(configuredPassword) == 0}
+			renderer = ${content}
+		}
+		backend {
+			condition = ${renderContentInBackend && node.context.inBackend}
+			renderer = afx`
+				<Carbon.Notification:Tag type="info">
+					{Translation.translate('backend.configuredPasswordNotification', null, [configuredPassword], 'Fusion/Helper/ProtectContent', 'CodeQ.PasswordProtectedContent')}
+				</Carbon.Notification:Tag>
+				{content}
+			`
+		}
+		noOrWrongPassword {
+			condition = ${configuredPassword != enteredPassword}
+			renderer = CodeQ.PasswordProtectedContent:Component.PasswordForm {
+				wrongPassword = ${String.length(enteredPassword) > 0}
+			}
+		}
+		validPassword {
+			condition = true
+			renderer = ${content}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="CodeQ.PasswordProtectedContent" source-language="en" datatype="plaintext" target-language="de">
+        <body>
+            <trans-unit id="backend.configuredPasswordNotification" xml:space="preserve">
+                <source>This content is protected from visitors with the password "{0}". Please keep in mind, this is a weak protection and you should never protect sensitive information only with a password.</source>
+                <target xml:lang="de" state="translated">Dieser Inhalt ist vor Besuchern durch das Passwort "{0}" geschützt. Bitte beachten Sie, dass dies ein schwacher Schutz ist und sensible Daten niemals nur mit einem Passwort geschützt werden sollten.</target>
+            </trans-unit>
+        </body>
+ </file>
+</xliff>

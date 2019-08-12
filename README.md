@@ -27,14 +27,13 @@ We use semantic-versioning so every breaking change will increase the major-vers
 
 ## Usage
 
-
 1. Add the mixin `'CodeQ.PasswordProtectedContent:Mixin.Password'` to any NodeType to allow editors to configure a password.
 2. Add the following process function to protect the content 
 `@process.protect = CodeQ.PasswordProtectedContent:Helper.ProtectContent`
    The process function is not added automatically, because you probably want to render headers and footers of your page. 
    No you can specifically define which content should be rendered and which not.
 3. You need to configure your Fusion object to be cached dynamic based on the post parameter like this:
-	```fusion
+	```neosfusion
 	@cache {
 		mode = ‘dynamic’
 		entryIdentifier {
@@ -48,6 +47,13 @@ We use semantic-versioning so every breaking change will increase the major-vers
 		entryDiscriminator = ${request.arguments.passwordProtectedContentPassword}
 	}
 	```
+
+You can also replace the form rendering with your own by defining `passwordForm` on the processor:
+```neosfusion
+@process.protect = CodeQ.PasswordProtectedContent:Helper.ProtectContent {
+	passwordForm = Vendor.YOUR_CUSTOM_PASSWORD_FORM_FUSION_COMPONENT
+}
+```
 
 ## License
 

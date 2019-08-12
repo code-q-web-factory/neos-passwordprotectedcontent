@@ -1,0 +1,11 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        CodeQ.PasswordProtectedContent: true
+    userInterface:
+      translation:
+        autoInclude:
+          CodeQ.PasswordProtectedContent:
+            - 'Fusion/*'
+            - 'NodeTypes/*'
