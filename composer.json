@@ -5,7 +5,7 @@
     "license": "MIT",
     "keywords": ["flow", "neos", "fusion", "password"],
     "require": {
-        "neos/neos": "~3.2 || ~4.0 || dev-master",
+        "neos/neos": "~3.2 || ~4.0 || ~5.0 || dev-master",
         "carbon/notification": "^1.0 || dev-master"
     },
     "autoload": {
