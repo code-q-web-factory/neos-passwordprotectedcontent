@@ -35,14 +35,14 @@ We use semantic-versioning so every breaking change will increase the major-vers
 3. You need to configure your Fusion object to be cached dynamic based on the post parameter like this:
 	```neosfusion
 	@cache {
-		mode = ‘dynamic’
+		mode = 'dynamic'
 		entryIdentifier {
 			node = ${node}
 		}
 		context {
-			1 = ‘node’
-			2 = ‘documentNode’
-			3 = ‘site’
+			1 = 'node'
+			2 = 'documentNode'
+			3 = 'site'
 		}
 		// cache the initial request ot see the form and don't cache the password-check result
 		entryDiscriminator = ${request.httpRequest.methodSafe ? 'static' : false}
@@ -53,6 +53,19 @@ You can also replace the form rendering with your own by defining `passwordForm`
 ```neosfusion
 @process.protect = CodeQ.PasswordProtectedContent:Helper.ProtectContent {
 	passwordForm = Vendor.YOUR_CUSTOM_PASSWORD_FORM_FUSION_COMPONENT
+}
+```
+
+To replace the ContentCollection with the password protected form, you will need to get the password from the documentNode and not the ContentCollection node, also you probably do not want to use a separate cache. So apply above @cache to your DocumentNode rendering and render the ContentCollection like this:
+```neosfusion
+main = Neos.Neos:ContentCollection {
+	nodePath = 'main'
+	@process.protect = CodeQ.PasswordProtectedContent:Helper.ProtectContent {
+		configuredPassword = ${q(documentNode).property('passwordProtectedContentPassword')}
+	}
+	@cache {
+		mode = 'embed'
+	}
 }
 ```
 
