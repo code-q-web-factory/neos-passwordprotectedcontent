@@ -4,8 +4,6 @@ prototype(CodeQ.PasswordProtectedContent:Helper.ProtectContent) < prototype(Neos
     ##################################
 	configuredPassword = ${q(node).property('passwordProtectedContentPassword')}
 	renderContentInBackend = true
-	passwordForm = CodeQ.PasswordProtectedContent:Component.PasswordForm
-
 
 	# rendering
 	@context {

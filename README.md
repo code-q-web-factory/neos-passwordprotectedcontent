@@ -49,13 +49,6 @@ We use semantic-versioning so every breaking change will increase the major-vers
 	}
 	```
 
-You can also replace the form rendering with your own by defining `passwordForm` on the processor:
-```neosfusion
-@process.protect = CodeQ.PasswordProtectedContent:Helper.ProtectContent {
-	passwordForm = Vendor.YOUR_CUSTOM_PASSWORD_FORM_FUSION_COMPONENT
-}
-```
-
 ### Usage with ContentCollection
 
 To replace the ContentCollection with the password protected form, you will need to get the password from the documentNode and not the ContentCollection node, also you probably do not want to use a separate cache. So apply above @cache to your DocumentNode rendering and render the ContentCollection like this:
@@ -68,6 +61,15 @@ main = Neos.Neos:ContentCollection {
 	@cache {
 		mode = 'embed'
 	}
+}
+```
+
+### Replacing the default form rendering
+
+You can also replace the form rendering with your own by overriding the prototype:
+```neosfusion
+prototype(CodeQ.PasswordProtectedContent:Component.PasswordForm) {
+	renderer = 'YOUR CODE'
 }
 ```
 
