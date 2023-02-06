@@ -22,7 +22,7 @@ prototype(CodeQ.PasswordProtectedContent:Helper.ProtectContent) < prototype(Neos
 			condition = ${renderContentInBackend && node.context.inBackend}
 			renderer = afx`
 				<Carbon.Notification:Tag type="info">
-					{Translation.translate('backend.configuredPasswordNotification', null, [configuredPassword], 'Fusion/Helper/ProtectContent', 'CodeQ.PasswordProtectedContent')}
+					{Translation.translate('backend.configuredPasswordNotification', null, [String.htmlSpecialChars(configuredPassword)], 'Fusion/Helper/ProtectContent', 'CodeQ.PasswordProtectedContent')}
 				</Carbon.Notification:Tag>
 				{content}
 			`
